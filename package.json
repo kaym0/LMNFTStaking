@@ -1,0 +1,31 @@
+{
+  "name": "myNFT",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "test:vesting": "truffle test ./test/vesting.js",
+    "test:lmnft": "truffle test ./test/withWhitelist.js",
+    "ganache-cli": "npx ganache-cli",
+    "setupAndTest": "truffle compile && truffle migrate && truffle test ./test/vesting.js"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.1",
+    "@truffle/hdwallet-provider": "^2.0.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.3",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.27",
+    "solc": "^0.8.11",
+    "truffle": "^5.4.28",
+    "truffle-assertions": "^0.9.2",
+    "web3": "^1.6.1"
+  }
+}
