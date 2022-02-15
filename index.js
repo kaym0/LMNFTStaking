@@ -1,59 +1,5 @@
-const { ethers } = require("ethers");
-const { MerkleTree } = require("merkletreejs");
-const keccak256 = require("keccak256");
-const { generateList } = require('./test/functions/index');
-const fs = require('fs')
-
-const accounts = [
-    "0x26bd528467AFB94653cBC7c182EB2520bf75D921",
-    "0x6726b860FA635d16e65513bD68a49221a25b7590",
-    "0x1Fd59E39b5318B1fa625efCfeCf3FeBfAEb388a1",
-    "0xD961ea8778Ad218564e412700fc61d768C9D9a64",
-    "0xa248BffadEd33a0c3860e3dEACe0D0C68E3a7a0E",
-    "0xf17Fc0aa8DAE14a3f1CeC2088cc6b26aeE99CacB",
-    "0xA8470f9744fF2a7935AAa3A704f97A1A69f65ED2",
-    "0x0579412B462f539e2718045F6C77E8913F17e91A",
-    "0xe3cD1116280265F6b6a81a3975d4568e1F77ceBa",
-];
-
-const abi = ethers.utils.defaultAbiCoder;
-
-const generateTestList = (accounts) => {
-    accounts.pop(0);
-    const list = [];
-    accounts.forEach((account) => {
-        list.push({
-            account: account,
-            startAmount: ethers.utils.parseUnits("100", "18").toString(),
-        });
-    });
-
-    return list;
-};
-
-const getMerkleTree = (testList) => {};
-
-const getMerkleData = (account, testList) => {
-    try {
-        const accountData = testList.find((o) => o.account == account);
-        const leafNodes = testList.map((item) => abi.encode(["address", "uint256"], [item.account, item.startAmount]));
-        const merkleTree = new MerkleTree(leafNodes, keccak256, { hashLeaves: true, sortPairs: true });
-        const root = merkleTree.getHexRoot();
-        const leaf = keccak256(abi.encode(["address", "uint256"], [accountData.account, accountData.startAmount]));
-        const proof = merkleTree.getHexProof(leaf);
-
-        console.log(merkleTree.verify(proof, leaf, root));
-        return {
-            root,
-            leaf,
-            proof,
-        };
-    } catch (error) {
-        console.log("Account is not in the list");
-    }
-};
-
-
+const { generateList } = require("./test/functions/index");
+const fs = require("fs");
 
 /// Change to account list for vesting contract
 const _accounts = [
@@ -110,7 +56,6 @@ const _accounts = [
     "0x23711a5c8dbd3fc04792D42A54C00A8a70407cF8",
 ];
 
-
 /// Change to corresponding amounts for vesting contract
 const amounts = [
     "500000000000000000000000",
@@ -166,9 +111,6 @@ const amounts = [
     "500000000000000000000000",
 ];
 
-
-
 const list = generateList(_accounts, amounts);
-
 const parsed = JSON.stringify(list);
 fs.writeFileSync("data.json", parsed);

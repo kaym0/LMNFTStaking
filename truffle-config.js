@@ -14,7 +14,7 @@ module.exports = {
             network_id: "*", // Match any network id
         },
         mainnet: {
-            provider: () => new HDWalletProvider(MNEMONIC, "wss://eth-mainnet.alchemyapi.io/v2/aKkfm9vXYA4U_7R-PwoaibCr1Y-2jTGo"),
+            provider: () => new HDWalletProvider(MNEMONIC, ""),
             network_id: 1,
             gasPrice: web3.utils.toWei("200", "gwei"),
             gas: 5500000,
@@ -23,28 +23,28 @@ module.exports = {
             skipDryRun: false,
         },
         mumbai: {
-            provider: () => new HDWalletProvider(MNEMONIC, "https://polygon-mumbai.g.alchemy.com/v2/aKkfm9vXYA4U_7R-PwoaibCr1Y-2jTGo"),
+            provider: () => new HDWalletProvider(MNEMONIC, ""),
             network_id: 80001,
             confirmations: 10,
             timeoutBlocks: 200,
             skipDryRun: true,
         },
         rinkeby: {
-            provider: () => new HDWalletProvider(MNEMONIC, "wss://eth-rinkeby.alchemyapi.io/v2/Xo36b7NHUbxFWP0f71Y80eL0u7LW1okS"),
+            provider: () => new HDWalletProvider(MNEMONIC, ""),
             network_id: 4,
             confirmations: 0,
             timeoutBlocks: 0,
             skipDryRun: true,
         },
         polygon: {
-            provider: () => new HDWalletProvider(MNEMONIC, "https://polygon-mainnet.g.alchemy.com/v2/K6fHd1rDikK5jfmVD9WNtGrCjt9mRCwb"),
+            provider: () => new HDWalletProvider(MNEMONIC, ""),
             network_id: 137,
             confirmations: 10,
             timeoutBlock: 200,
             skipDryRun: false,
         },
         ropsten: {
-            provider: () => new HDWalletProvider(MNEMONIC, `https://eth-ropsten.alchemyapi.io/v2/pxEjMUSPVDRETmhjNvZmHBrMhhgIGfMO`),
+            provider: () => new HDWalletProvider(MNEMONIC, ``),
             network_id: 3, // Ropsten's id
             gas: 5500000, // Ropsten has a lower block limit than mainnet
             confirmations: 2, // # of confs to wait between deployments. (default: 0)
@@ -72,15 +72,4 @@ module.exports = {
     },
     contracts_directory: "./src/contracts/",
     contracts_build_directory: "./src/abis/",
-    /*mocha: {
-		reporter: "eth-gas-reporter",
-		reporterOptions: {
-			coinmarketcap: "e92b3001-cf8d-47e5-88fe-b131cd830907",
-			src: "src/contracts",
-			currency: "GBP",
-			excludeContracts: ["Migrations"],
-			gasPriceApi: "https://api.etherscan.io/api?module=proxy&action=eth_gasPrice"
-			//gasPrice: 100,
-		},
-	},*/
 };
