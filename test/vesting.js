@@ -62,7 +62,7 @@ contract("Factory: LMNFT", (accounts) => {
 
         await token.transfer(
             vesting.address,
-            ethers.utils.parseUnits("900", "18", {
+            ethers.utils.parseUnits("145800000.0004", "18", {
                 from: accounts[0],
             })
         );
@@ -72,7 +72,7 @@ contract("Factory: LMNFT", (accounts) => {
         it("fetches total supply", async () => {
             const totalSupply = await vesting.totalSupply();
 
-            assert.equal(formatUnits(totalSupply), "900");
+            assert.equal(formatUnits(totalSupply), "145800000.0004");
         });
     });
 

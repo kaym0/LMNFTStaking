@@ -78,7 +78,6 @@ contract Vesting is Ownable, ReentrancyGuard {
     /// @param proof The merkle proof, generated offchain and passed from the frontend.
     function _verifyProof(address account, uint256 sAmount, bytes32[] calldata proof) internal view {
         bytes32 node = keccak256(abi.encodePacked(account, sAmount));
-        //if (!MerkleProof.verify(proof, merkleRoot, node)) revert InvalidProof();
         require(MerkleProof.verify(proof, merkleRoot, node), "INVALID PROOF");
     }
 

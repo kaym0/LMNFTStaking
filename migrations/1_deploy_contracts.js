@@ -15,7 +15,7 @@ module.exports = async function deployContract(deployer, network, accounts) {
     const token = await TestToken.deployed();
     await deployer.deploy(Vesting, token.address);
     const vest = await Vesting.deployed();
-    await token.transfer(vest.address, "25000000000000000000000000");
+    //await token.transfer(vest.address, "25000000000000000000000000");
     const { root } = getMerkleRoot(list);
     console.log("root", root);
     await vest.addMerkleData(root);

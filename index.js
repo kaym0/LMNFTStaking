@@ -130,7 +130,8 @@ const list = generateList(_accounts, amounts);
 const parsed = JSON.stringify(list);
 fs.writeFileSync("data.json", parsed);
 
-const newValues = [];
+
+
 /*
 amounts.forEach((item) => {
     newValues.push(ethers.utils.parseUnits(item, "18"));
