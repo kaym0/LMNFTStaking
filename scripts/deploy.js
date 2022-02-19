@@ -17,9 +17,8 @@ async function main() {
 
     /// Creates a merkleroot from the list.
     const { root } = getMerkleRoot(list);
-    await vesting.addMerkleData(root);
+    const merkleSet = await vesting.addMerkleData(root);
     console.log("Vesting deployed to:", vesting.address);
-
 }
 
 main()

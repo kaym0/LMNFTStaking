@@ -17,6 +17,18 @@ const generateTestList = (accounts) => {
     return list;
 };
 
+const generateList = (accounts, amounts) => {
+    const list = [];
+    accounts.forEach((account, i) => {
+        list.push({
+            account: account,
+            startAmount: amounts[i],
+        });
+    });
+
+    return list;
+};
+
 const getMerkleRoot = (testList) => {
     try {
         const leafNodes = testList.map((item) => ethers.utils.hexStripZeros(abi.encode(["address", "uint256"], [item.account, item.startAmount])));
@@ -94,11 +106,11 @@ const advanceBlock = () => {
     });
 };
 
-
 module.exports = {
     getMerkleRoot: getMerkleRoot,
     generateTestList: generateTestList,
     getMerkleData: getMerkleData,
     advanceTime: advanceTime,
     advanceTimeAndBlock: advanceTimeAndBlock,
+    generateList: generateList,
 };
